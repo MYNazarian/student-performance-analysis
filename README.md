@@ -1,47 +1,69 @@
-# Student Performance Analysis
+Student Performance Analysis
 
-A Python data analysis project exploring student performance, study time, absences, and grades using the Student Performance dataset.
+An exploratory data analysis and machine learning project investigating student performance and predicting final grades using Python.
 
-## Project Overview
+Project Overview
 
-The goal of this project is to practice Exploratory Data Analysis (EDA) and investigate patterns in student academic performance.
+This project explores the "Student Performance dataset" (https://archive.ics.uci.edu/dataset/320/student+performance) from the UCI Machine Learning Repository.
 
-## Dataset
+The goal is to understand how selected factors relate to students' final grades and build regression models to predict final performance using earlier-period grades.
 
-* **Source:** [UCI Student Performance Dataset](https://archive.ics.uci.edu/dataset/320/student+performance)
-* **Students analyzed:** 395
-* **Features:** 33
-* **File:** `data/student-mat.csv`
+Objectives
 
-The dataset contains information about students' backgrounds, study habits, absences, and academic grades.
+- Explore and understand the dataset.
+- Investigate the relationship between study time, absences, and final grades.
+- Analyze correlations between earlier-period grades and final grades.
+- Build and evaluate regression models.
+- Compare model performance and examine prediction errors.
 
-## Tools & Technologies
+Dataset
 
-* Python
-* Pandas
-* Matplotlib
-* Jupyter Notebook
+- Source: UCI Machine Learning Repository
+- File: "student-mat.csv"
+- Samples: 395 students
+- Features: 33 columns
+- Target: "G3" — final grade
 
-## Analysis
+The dataset contains student information, including study time, absences, previous grades, and final grades.
 
-This project explores:
+Tools and Libraries
 
-* The relationship between weekly study time and final grades.
-* The relationship between student absences and final grades.
-* Correlations between first-period (G1), second-period (G2), and final grades (G3).
-* Visual patterns in student performance.
+- Python
+- Pandas
+- Matplotlib
+- Scikit-learn
+- Jupyter Notebook
 
-## Key Findings
+Machine Learning
 
-* Study time showed a very weak positive association with final grades.
-* No statistically significant monotonic association was observed between absences and final grades.
-* Previous-period grades were strongly correlated with final grades, especially G2.
+Two regression models were evaluated using "G1" and "G2" as input features:
 
-These findings describe associations in this dataset and do not establish causation.
+- Linear Regression
+- Random Forest Regressor
 
-## Project Structure
+The data was split into training and test sets. Five-fold cross-validation was performed on the training data, and final evaluation metrics were calculated on the held-out test set.
 
-```text
+Results
+
+Model| Mean CV R²| Test MAE| Test R²
+Linear Regression| 0.827| 1.262| 0.795
+Random Forest| 0.793| 1.360| 0.772
+
+Linear Regression performed better than Random Forest in these experiments, achieving a lower test MAE and a higher test R².
+
+The results suggest that the simpler model is a useful baseline for this feature set and dataset.
+
+Key Findings
+
+- Earlier-period grades ("G1" and "G2") were strongly correlated with final grades ("G3").
+- Study time showed only a weak positive association with final grades in this dataset.
+- Absences showed almost no linear correlation with final grades in the initial analysis.
+- Linear Regression outperformed Random Forest in the model comparison.
+
+These findings describe associations in this dataset and do not establish causal relationships.
+
+Project Structure
+
 student-performance-analysis/
 ├── data/
 │   └── student-mat.csv
@@ -51,28 +73,38 @@ student-performance-analysis/
 ├── README.md
 ├── requirements.txt
 └── .gitignore
-```
 
-## How to Run
+How to Run
 
 1. Clone this repository.
+2. Install the dependencies.
+3. Open the notebook and run the cells.
 
-2. Install the required packages:
+Install dependencies:
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+pip install -r requirements.txt
 
-3. Open `notebooks/student_analysis.ipynb` in Jupyter Notebook.
+Launch Jupyter Notebook:
 
-4. Run the cells to reproduce the analysis.
+jupyter notebook
 
-## Current Status
+Then open "notebooks/student_analysis.ipynb".
 
-Exploratory Data Analysis completed. Further analysis and machine learning experiments are planned.
+Limitations
 
-## Author
+- The analysis uses a single dataset from two Portuguese schools.
+- Model performance may differ on other student populations.
+- The model uses earlier-period grades, so its predictions depend on those grades being available.
+- The observed relationships should not be interpreted as causal effects.
 
-**Yasin Nazarian**
+What I Learned
 
-Learning Machine Learning through hands-on projects and sharing the process along the way.
+Through this project, I practiced data exploration, visualization, correlation analysis, regression modeling, cross-validation, model evaluation, and prediction error analysis.
+
+This is part of my ongoing journey to learn machine learning through hands-on projects.
+
+Author
+
+Yasin Nazarian
+
+GitHub: "@MYNazarian" (https://github.com/MYNazarian)
